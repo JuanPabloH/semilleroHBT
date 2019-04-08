@@ -14,7 +14,7 @@ public persona: Persona;
 
   ngOnInit() {  
 
-  this.persona={nombre:'Juan',apellido:'Herrera',documento:'1057604965',id:'1'};
+  this.persona={nombre:'Juan',apellido:'Herrera',documento:'1057604965',id:'1',edad:18};
   }
 
 
@@ -29,5 +29,6 @@ interface Persona {
     nombre: string,
     apellido: string,
     documento: string,
-    id: string,    
+    id: string,  
+    edad: number  
   } 

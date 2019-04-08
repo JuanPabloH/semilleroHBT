@@ -4,6 +4,8 @@
 	<p>Documento: <input type="text" value="{{persona.documento}}" readonly></p>
 	<p>Nombre: <input type="text" value="{{persona.nombre}}" readonly></p>
 	<p>Apellido: <input type="text" value="{{persona.apellido}}" readonly></p>
+	<p *ngIf="persona.edad>=18">Edad: <input type="text" value="{{persona.edad}}" readonly></p>
+	
 
 
 </form>
