@@ -1,0 +1,46 @@
+<h2>Persona</h2>
+<input *ngIf="mostrarFormulario==false" value="Agregar Persona" type="button" (click)="mostrar()" />
+    
+<input *ngIf="mostrarFormulario==true" value="Ocultar Formulario" type="button" (click)="ocultar()" />
+<form *ngIf="mostrarFormulario==true">
+    
+      <label for="name">Nombre</label>
+      <input name="name" type="text"  [(ngModel)]="persona.nombre"   placeholder="Nombre persona" />
+      <br>
+      <label for="apellido">Apellido</label>
+      <input name="apellido" type="text"  [(ngModel)]="persona.apellido"   placeholder="Apellido persona" />
+      <br>
+      <label for="tipoIdentificacion">Tipo Identificacion</label>
+      <select name="tipoIdentificacion" [(ngModel)]="persona.tipoIdentificacion">
+        <option selected value="cedula" >Cedula</option>
+        <option value="tarjeta">Tarjeta de Identidad</option>
+      </select>
+
+    
+  <p></p>
+    <input value="Guardar" type="submit" (click)="guardar()">
+    
+  
+  </form>
+  <table border="1">
+    <caption>Personas</caption>
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>N° Identificacion</th>
+        <th>Tipo Identificacion</th>
+        <th>Sexo</th>
+        <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let per  of personas">
+        <td>{{per.nombre | uppercase}}</td>
+        <td>{{per.apellido | uppercase}}</td>
+        <td>{{per.apellido | uppercase}}</td>
+        <td>{{per.apellido | uppercase}}</td>
+        <td>{{per.apellido | uppercase}}</td>
+        <td>
+            <input value="Borrar" type="button" (click)="borrar(per)">
+        </td>
+    </tr>
+    </table>
+

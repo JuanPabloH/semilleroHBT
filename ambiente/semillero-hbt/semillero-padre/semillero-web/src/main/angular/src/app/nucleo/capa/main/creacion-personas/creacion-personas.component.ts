@@ -8,9 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CreacionPersonasComponent implements OnInit {
 public persona: Persona;
  
-
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {  
 
@@ -20,10 +18,7 @@ public persona: Persona;
 
 
 }
-enum tipoDocumento {
-      cedula,
-      tarjeta
- }
+
 
 interface Persona {
     nombre: string,
