@@ -2,45 +2,94 @@
 <input *ngIf="mostrarFormulario==false" value="Agregar Persona" type="button" (click)="mostrar()" />
     
 <input *ngIf="mostrarFormulario==true" value="Ocultar Formulario" type="button" (click)="ocultar()" />
+<!-- 
+    Formulario para crear persona y actualizar persona
+  -->
+  
+  <h1 *ngIf="actualizarPersona">Actualizar Persona</h1>
 <form *ngIf="mostrarFormulario==true">
-    
+
+      
+
       <label for="name">Nombre</label>
-      <input name="name" type="text"  [(ngModel)]="persona.nombre"   placeholder="Nombre persona" />
+      <input *ngIf="!actualizarPersona" required name="name" type="text"  [(ngModel)]="persona.nombre"   placeholder="Nombre persona" />
+      <input *ngIf="actualizarPersona" required name="nombre" type="text" [(ngModel)]="persona2.nombre" value={{persona2.nombre}}  />
       <br>
       <label for="apellido">Apellido</label>
-      <input name="apellido" type="text"  [(ngModel)]="persona.apellido"   placeholder="Apellido persona" />
+      <input *ngIf="!actualizarPersona" name="apellido" type="text"  [(ngModel)]="persona.apellido"   placeholder="Apellido persona" />
+      <input *ngIf="actualizarPersona" name="apell" type="text" [(ngModel)]="persona2.apellido"   value={{persona2.apellido}} />
       <br>
-      <label for="tipoIdentificacion">Tipo Identificacion</label>
-      <select name="tipoIdentificacion" [(ngModel)]="persona.tipoIdentificacion">
-        <option selected value="cedula" >Cedula</option>
+      <label *ngIf="!actualizarPersona" for="tipoIdentificacion">Tipo Identificacion</label>
+      <select *ngIf="!actualizarPersona" name="tipoIdentificacion" [(ngModel)]="persona.tipoIdentificacion">
+        <option value="cedula" selected>Cedula</option>
         <option value="tarjeta">Tarjeta de Identidad</option>
       </select>
+      <br>
+      <label for="numeroIdentificacion">Numero de identificacion</label>
+      <input *ngIf="!actualizarPersona" name="numeroIdentificacion" type="text"  [(ngModel)]="persona.numeroIdentificacion"   placeholder="Numero identificacion" />
+      <input *ngIf="actualizarPersona" name="nIdent" type="text" [(ngModel)]="persona2.numeroIdentificacion"   value={{persona2.numeroIdentificacion}} />
+      <br>
+      <label for="sexo">Sexo</label>
+      <br>
+      <label *ngIf="!actualizarPersona"><input  type="radio" name="sexo" value="H" [(ngModel)]="persona.sexo"> Hombre</label>
 
+      <label *ngIf="!actualizarPersona"><input type="radio" name="sexo" value="M" [(ngModel)]="persona.sexo"> Mujer</label>
+      
+      <label *ngIf="actualizarPersona"><input type="radio" name="sexo" value="H" [(ngModel)]="persona2.sexo"> Hombre</label>
+      <label *ngIf="actualizarPersona"><input  type="radio" name="sexo" value="M" [(ngModel)]="persona2.sexo"> Mujer</label>
+      <br>
+
+
+      
+      <br>
+      <label for="mayorEdad">Mayor de edad:
+        <input *ngIf="!actualizarPersona" type="checkbox" name="mayorEdad" id="mayor" value=true [(ngModel)]="persona.mayorEdad">
+        <input *ngIf="actualizarPersona" type="checkbox" name="mayorEdad" id="mayor" [(ngModel)]="persona2.mayorEdad"  value={{persona2.mayorEdad}} >        
+      </label>            
+      <br>
+
+      <label for="fechaNacimiento">Fecha de Nacimiento</label>
+      <input *ngIf="!actualizarPersona" name="fechaNacimiento" type="date" [(ngModel)]="persona.fechaNacimiento">
+      <input *ngIf="actualizarPersona" name="fechaNacimiento" type="date" value={{persona2.fechaNacimiento}} [(ngModel)]="persona2.fechaNacimiento">
+      
+      
     
   <p></p>
-    <input value="Guardar" type="submit" (click)="guardar()">
+    <input *ngIf="!actualizarPersona" value="Guardar" type="submit" (click)="guardar()">
+    <input *ngIf="actualizarPersona" value="Actualizar" type="submit" (click)="update()" >
     
   
   </form>
-  <table border="1">
+
+  <!-- 
+    Lista de las personas que existen
+  --> 
+  <table *ngIf="!actualizarPersona" border="1">
     <caption>Personas</caption>
     <tr>
+        <th>Id</th>
         <th>Nombre</th>
         <th>Apellido</th>
         <th>N° Identificacion</th>
         <th>Tipo Identificacion</th>
         <th>Sexo</th>
+        <th>Mayor de edad</th>
+        <th>Fecha de Nacimiento</th>
         <th>Acciones</th>
     </tr>
     <tr *ngFor="let per  of personas">
-        <td>{{per.nombre | uppercase}}</td>
-        <td>{{per.apellido | uppercase}}</td>
-        <td>{{per.apellido | uppercase}}</td>
-        <td>{{per.apellido | uppercase}}</td>
-        <td>{{per.apellido | uppercase}}</td>
+        <td>{{per.id}}</td>
+        <td>{{per.nombre | lowercase}}</td>
+        <td>{{per.apellido | lowercase}}</td>        
+        <td>{{per.numeroIdentificacion | lowercase}}</td>
+        <td>{{per.tipoIdentificacion | lowercase}}</td>
+        <td>{{per.sexo | lowercase}}</td>
+        <td *ngIf="per.mayorEdad">Si</td>
+        <td *ngIf="!per.mayorEdad">No</td>
+        <td>{{per.fechaNacimiento}}</td>
         <td>
             <input value="Borrar" type="button" (click)="borrar(per)">
+            <input value="Actualizar" type="button" (click)="formActualizar(per)">
         </td>
     </tr>
     </table>
-
