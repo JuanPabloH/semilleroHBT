@@ -22,7 +22,10 @@ public class ConsultasBean implements IConsultasBeanLocal{
 	private EntityManager entityManager;
 	
 	//contenedor controla las transacciones
-	
+	/**
+	 * Metodo para consultar las Marcas
+	 * retorna un objeto de tipo List<Marca>
+	 * */
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 	public List<Marca> consultarMarcas() {
 		//Transformar consulta en una consulta nativa 
@@ -30,19 +33,42 @@ public class ConsultasBean implements IConsultasBeanLocal{
 	}
 	
 	
-
+	/**
+	 * Metodo que permite consultar las lineas existentes, dicha consulta se hace
+	 * por medio del atributo de entrada idMarca, en donde retornara las lineas que pertenecen
+	 * a la marca que se ingresa, retorna un una lista de la clase Linea
+	 * 
+	 * 
+	 * @param idMarca
+	 * 
+	 * */
 	public List<Linea> consultarLineas(Long idMarca) {
 		return entityManager.createQuery("Select ln FROM Linea ln JOIN FETCH ln.marca where ln.marca.idMarca =:idMarca").
 				setParameter("idMarca", idMarca).getResultList();
 		
 	}
 	
+	/**
+	 * Metodo que permite consultar informacion de una persona, dicha consulta se realiza con los atributos 
+	 * de entrada, retorna una lista de tipo Persona
+	 * @param numeroIdentificacion
+	 * @param tipoIdentificacion
+	 * */
 	public List<Persona> consultarPersona(String numeroIdentificacion,String tipoIdentificacion) {
 		return entityManager.createQuery("Select per FROM Persona per where per.numeroIdentificacion =:numeroIdentificacion and per.tipoIdentificacion=:tipoIdentificacion").
 				setParameter("numeroIdentificacion", numeroIdentificacion).setParameter("tipoIdentificacion", tipoIdentificacion).getResultList();
 		
 	}
 	
+	
+	
+	/**
+	 * metodo que permite el registro de una persona en la base de datos,
+	 * recibe como parametro un objeto de tipo PersonaDTO,
+	 * en donde los valores recibidos del parametro se asignan a la persona a registrar 
+	 * en la base de datos
+	 * @param personaDTO
+	 * */
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void crearPersona(PersonaDTO personaDTO) {
 		Persona persona= new Persona();
@@ -73,7 +99,11 @@ public class ConsultasBean implements IConsultasBeanLocal{
 		
 	}
 	
-	
+	/**Metodo que permite la mpdificacion de una persona,
+	 * recibe como parametro un objeto de tipo PersonaDTO el cual contiene
+	 * los datos modificados de la persona
+	 * @param personaDTO
+	 * */
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public void modificarPersona(PersonaDTO personaDTO) {
 		

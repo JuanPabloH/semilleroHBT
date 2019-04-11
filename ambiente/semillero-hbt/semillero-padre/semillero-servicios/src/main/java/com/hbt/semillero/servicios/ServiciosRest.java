@@ -26,7 +26,12 @@ public class ServiciosRest {
 	
 	@EJB
 	private IConsultasBeanLocal consultasBean;
-
+	
+	
+	/**
+	 * Metodo que invoca al EJB para obtener las marcas existentes y las retorna en 
+	 * una lista de tipo MarcaDTO
+	 * */
 	@GET
 	@Path("/consultarMarcas")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -42,6 +47,12 @@ public class ServiciosRest {
 		return retorno;
 	}
 	
+	
+	/**
+	 * Metodo que invoca al EJB para obtener las lineas existentes segun 
+	 * la marca y las retorna una lista de tipo LineaDTO
+	 * @param idMarca
+	 * */
 	@GET
 	@Path("/consultarLineas")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -62,6 +73,13 @@ public class ServiciosRest {
 		
 	}
 	
+	/**
+	 * Metodo que invoca al EJB para la creacion de una persona, recibe como parametro la
+	 * persona que se va a agregar, retorna un objeto de tipo ResultadoDTO para identificar
+	 * si hubo exito o no
+	 * @param personaDTO
+	 * */
+	
 	@POST
 	@Path("/crearPersona")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -80,6 +98,13 @@ public class ServiciosRest {
 		return retorno;
 		
 	}
+	
+	/**
+	 * Metodo que invoca al EJB para la modificacion de una persona, recibe como parametro la
+	 * persona que se va a modificar, retorna un objeto de tipo ResultadoDTO para identificar
+	 * si hubo exito o no
+	 * @param personaDTO
+	 * */
 	
 	@PUT
 	@Path("/modificarPersona")
@@ -100,6 +125,13 @@ public class ServiciosRest {
 		
 	}
 	
+	/**
+	 * Metodo que invoca al EJB para la consulta de una persona, recibe como parametros el numero de
+	 * identificacion y el tipo de identificacion de la persona a consultar
+	 * Retorna una lista de tipo Persona
+	 * @param numeroIdentificacion
+	 * @param tipoIdentificacion
+	 * */
 	@GET
 	@Path("/consultarPersonas")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -123,7 +155,10 @@ public class ServiciosRest {
 		
 	}
 	
-	
+	/**
+	 * metodo que permite la creacion de un objeto de tipo MarcaDTO
+	 * @param marca
+	 * */
 	
 	private MarcaDTO construirMarcaDTO(Marca marca) {
 		MarcaDTO marcaDTO= new MarcaDTO();
