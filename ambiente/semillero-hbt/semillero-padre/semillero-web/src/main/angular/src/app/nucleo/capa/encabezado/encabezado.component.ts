@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-encabezado',
-  templateUrl: './encabezado.component.html',
-  styleUrls: ['./encabezado.component.css']
+  templateUrl: './encabezado.component.html'
 })
 export class EncabezadoComponent implements OnInit {
-title = 'semillero-Encabezado';
+  public title = "Semillero HBT";
   constructor() { }
 
   ngOnInit() {

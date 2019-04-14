@@ -1,7 +1,2 @@
-# semilleroHBT
-En este repositorio se almacenan las fuentes basicas para emprender el semillero Java HBT 2019, los objetivos del semillero son:
-
-- Abordar con ejercicios practicos el aprendizaje de la creacion de una aplicacion web utilizando como tecnologia backend Java y como tecnologia frontend angular
-
-#Tarea Segunda Sesion Angular
--Las imagenes del funcionamiento del ejercicio están en el directorio EjercicioAngularSesion2
+El ejercicio del prototipo de Gestion de Vehiculos lo subí al siguiente repo:
+https://github.com/JuanPabloH/semilleroHBT-GestionVehiculos
